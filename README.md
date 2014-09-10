@@ -1,13 +1,15 @@
 rjob
 ====
 
+[![Build Status](https://travis-ci.org/treystout/rjob.svg?branch=master)](https://travis-ci.org/treystout/rjob)
+
 Simple redis-backed queue that does not rely on eval or code insertion, only data.
 
-== Install ==
+## Install ##
 
     pip install rjob
 
-== Basic Usage ==
+## Basic Usage ##
 
 Both your product and consumers of queued content will need an instance of
 ``RJobQueue``
