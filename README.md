@@ -2,6 +2,8 @@ rjob
 ====
 
 [![Build Status](https://travis-ci.org/treystout/rjob.svg?branch=master)](https://travis-ci.org/treystout/rjob)
+[![Documentation Status](https://readthedocs.org/projects/rjob/badge/?version=latest)](https://readthedocs.org/projects/rjob/?badge=latest)
+
 
 Simple redis-backed queue that does not rely on eval or code insertion, only data.
 
