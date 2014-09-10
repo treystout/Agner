@@ -1,3 +1,7 @@
 argparse==1.2.1
+hiredis==0.1.4
+py==1.4.24
+pytest==2.6.2
 redis==2.10.3
+test-pkg==0.0
 wsgiref==0.1.2
