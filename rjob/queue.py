@@ -1,19 +1,9 @@
 import logging
 
 from .job import RJob
+from .errors import EnqueueError
 
 BLOCK_SECONDS = 1
-
-class Error(Exception):
-  """Base exception for rjob package, all other exceptions in this package
-  will inherit from this.
-  """
-  pass
-
-class EnqueueError(Error):
-  """An error happened during enqueueing of a job
-  """
-  pass
 
 class RJobQueue(object):
   def __init__(self, queue_name, redis_connection):

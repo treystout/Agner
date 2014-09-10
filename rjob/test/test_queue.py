@@ -1,8 +1,8 @@
 import pytest
 
 from redis import Redis
-from rjob.queue import RJobQueue, EnqueueError
-from rjob.job import RJob
+from rjob import RJobQueue, RJob
+from rjob.errors import EnqueueError
 
 TEST_QUEUE_NAME = "test_queue"
 
