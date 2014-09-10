@@ -16,6 +16,7 @@ setup(
     description="simple data-only queueing system backed by Redis",
     author="Trey Stout",
     author_email="treystout@gmail.com",
+    url="https://github.com/treystout/rjob",
     version="0.1.0",
     packages=['rjob'],
     cmdclass={'test':PyTest},
