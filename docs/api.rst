@@ -3,19 +3,22 @@
 API
 ===
 
-.. module:: rjob
+.. module:: agner
 
-RJobQueue
+Queue
 ---------
 
-.. autoclass:: RJobQueue
+.. autoclass:: Queue
+
+  This is a queue
+
     :members:
     :inherited-members:
 
-RJob
+Job
 ----
 
-.. autoclass:: RJob
+.. autoclass:: Job
     :members:
     :inherited-members:
 

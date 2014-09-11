@@ -1,7 +1,7 @@
 User's Guide
 ------------
 
-Prose-style documentation about why you'd use rjob and how to implement it
+Prose-style documentation about why you'd use Agner and how to implement it
 
 .. toctree::
     :maxdepth: 2

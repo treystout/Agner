@@ -10,7 +10,7 @@ solutions we have:
  * enqueue executable code, and run it elsewhere later
  * enqueue data only, and rely on the consumer to know what to do with it 
    
-rjob uses the second option. This allows your consumers to be written in whatever
+Agner uses the second option. This allows your consumers to be written in whatever
 language is suitable, and relieves the producing code of having to care about things
 like variable scope, and imports.
 
