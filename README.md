@@ -1,8 +1,8 @@
-rjob
-====
+Agner
+=====
 
 [![Build Status](https://travis-ci.org/treystout/rjob.svg?branch=master)](https://travis-ci.org/treystout/rjob)
-[![Documentation Status](https://readthedocs.org/projects/rjob/badge/?version=latest)](https://readthedocs.org/projects/rjob/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/agner/badge/?version=latest)](https://readthedocs.org/projects/agner/?badge=latest)
 
 
 Simple redis-backed queue that does not rely on eval or code insertion, only data.
@@ -10,27 +10,32 @@ Simple redis-backed queue that does not rely on eval or code insertion, only dat
 ## Install ##
 
 ```shell
-$ pip install rjob
+$ pip install agner
 ```
 
 ## Basic Usage ##
 
+Full Documentation can be found at http://readthedocs.org/projects/agner
+
 Both your product and consumers of queued content will need an instance of
-``RJobQueue``
+``agner.Queue``
 
 ```python
+import redis
+import agner
+
 # first make a Redis Connection
-r = Redis(your_connection_info)
+r = redis.Redis(your_connection_info)
 
 # construct the queue, by giving it a reference to connected Redis client
-q = RJobQueue('some_name', r)
+q = agner.Queue('some_name', r)
 
 # flush the queue by removing anything in there
 q.empty()
 
 # create a couple of jobs
-job1 = RJob(foo=1)
-job2 = RJob(foo=2)
+job1 = agner.Job(foo=1)
+job2 = agner.Job(foo=2)
 
 # insert them into the queue
 q.enqueue(job1)

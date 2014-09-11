@@ -1,5 +1,5 @@
 class Error(Exception):
-  """Base exception for rjob package, all other exceptions in this package
+  """Base exception for the agner package, all other exceptions in this package
   will inherit from this.
   """
   pass

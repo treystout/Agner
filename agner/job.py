@@ -4,7 +4,7 @@ try:
 except ImportError:
   import Pickle as pickle
 
-class RJob(object):
+class Job(object):
   def __init__(self, **kwargs):
     self.payload = kwargs
     # TODO: replace with a smart 64bit job id generator that has time and
@@ -22,7 +22,7 @@ class RJob(object):
   @classmethod
   def from_serialized(self, serialized):
     payload = pickle.loads(serialized)
-    return RJob(**payload)
+    return Job(**payload)
 
   def notify_queued(self, queue):
     """To be called by the queue itself when it inserts this job

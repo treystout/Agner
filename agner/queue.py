@@ -1,13 +1,13 @@
 import logging
 
-from .job import RJob
+from .job import Job
 from .errors import EnqueueError
 
 BLOCK_SECONDS = 1
 
-class RJobQueue(object):
+class Queue(object):
   def __init__(self, queue_name, redis_connection):
-    """RJobQueues are responsible for both producing and consuming work
+    """Queues are responsible for both producing and consuming work
     You must pass in a connected Redis object as well as a string queue_name
     """
     self.queue_name = queue_name
@@ -44,7 +44,7 @@ class RJobQueue(object):
       return
 
     queue_name, serialized_job = response
-    job = RJob.from_serialized(serialized_job)
+    job = Job.from_serialized(serialized_job)
     if not job:
       self.log.warn("could not deserialize job from: %s", serialized_job)
     return job
