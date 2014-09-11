@@ -30,7 +30,7 @@ def test_double_enqueue(redis):
   q = agner.Queue(TEST_QUEUE_NAME, redis)
   job = agner.Job(foo=10)
   q.enqueue(job)
-  with pytest.raises(EnqueueError):
+  with pytest.raises(agner.errors.EnqueueError):
     q.enqueue(job)
 
 def test_ordering(redis):
