@@ -15,7 +15,7 @@ $ pip install agner
 
 ## Basic Usage ##
 
-Full Documentation can be found at http://readthedocs.org/projects/agner
+Full Documentation can be found at http://agner.readthedocs.org/en/latest/
 
 Both your product and consumers of queued content will need an instance of
 ``agner.Queue``
