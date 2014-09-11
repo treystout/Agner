@@ -16,6 +16,12 @@ class Job(object):
       self.payload['job_id'] = self.job_id
     self.__queue_name = None # set when enqueued
 
+  def __repr__(self):
+    status = "UNQUEUED"
+    if self.__queue_name:
+      status = "IN QUEUE: %s" % self.__queue_name
+    return u'<agner.Job ID:%s %s>' % (self.job_id, status)
+
   def queue_name(self):
     return self.__queue_name
 
