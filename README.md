@@ -1,7 +1,7 @@
 Agner
 =====
 
-[![Build Status](https://travis-ci.org/treystout/rjob.svg?branch=master)](https://travis-ci.org/treystout/rjob)
+[![Build Status](https://travis-ci.org/treystout/Agner.svg?branch=master)](https://travis-ci.org/treystout/Agner)
 [![Documentation Status](https://readthedocs.org/projects/agner/badge/?version=latest)](https://readthedocs.org/projects/agner/?badge=latest)
 
 
