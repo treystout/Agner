@@ -19,7 +19,7 @@ class Queue(object):
   def __len__(self):
     """Returns the number of jobs currently sitting in the queue
     """
-    return self.redis.zcard(self.queue_name)
+    return self.redis.llen(self.queue_name)
 
   def enqueue(self, job):
     """Enqueue a job for later processing, returns the new length of the queue
