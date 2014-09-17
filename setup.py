@@ -12,12 +12,12 @@ class PyTest(Command):
     raise SystemExit(errno)
 
 setup(
-    name="Agner",
+    name="agner",
     description="simple data-only queueing system backed by Redis",
     author="Trey Stout",
     author_email="treystout@gmail.com",
     url="https://github.com/treystout/agner",
-    version="0.1.0",
+    version="0.2.1",
     packages=['agner'],
     cmdclass={'test':PyTest},
 )

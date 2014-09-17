@@ -17,7 +17,7 @@ def test_create(redis):
   """product.create returns id of newly created item
   """
   q = agner.Queue(TEST_QUEUE_NAME, redis)
-  assert q.queue_name == TEST_QUEUE_NAME, "queue should know its own name"
+  assert q.queue_name.endswith(TEST_QUEUE_NAME), "queue should know its name"
   assert len(q) == 0, "there should be no jobs in the queue"
 
 def test_enqueue(redis):
