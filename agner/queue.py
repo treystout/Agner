@@ -1,5 +1,7 @@
 import logging
 
+from pkg_resources import resource_string
+
 from .job import Job
 from .errors import EnqueueError
 
@@ -12,10 +14,13 @@ class Queue(object):
     You must pass in a connected Redis object as well as a string queue_name
     """
     self.redis = redis_connection
-    self.__queue_name = "%s%s" % (QUEUE_PREFIX, queue_name)
+    self.__raw_queue_name = queue_name
     self.__should_run = True # set this to false to break consumer loops
     self.log = logging.getLogger("%s.%s" % (__name__, queue_name))
-    self.log.debug(self.redis.ping())
+
+    # load the lua scripts and bind them to registered functions
+    self.lua_next = self.redis.register_script(resource_string(__name__,
+      'lua/next_job.lua'))
 
   def __len__(self):
     """Returns the number of jobs currently sitting in the queue
@@ -24,14 +29,14 @@ class Queue(object):
 
   @property
   def queue_name(self):
-    return self.__queue_name
+    return "%s%s" % (QUEUE_PREFIX, self.__raw_queue_name)
 
   def enqueue(self, job):
     """Enqueue a job for later processing, returns the new length of the queue
     """
     if job.queue_name():
       raise EnqueueError("job %s already queued!" % job.job_id)
-    new_len = self.redis.rpush(self.queue_name, job.serialize())
+    new_len = self.redis.lpush(self.queue_name, job.serialize())
     job.notify_queued(self)
     return new_len
 
@@ -43,15 +48,21 @@ class Queue(object):
     else:
       timeout = BLOCK_SECONDS
 
-    response = self.redis.blpop(self.queue_name, timeout)
+    response = self.lua_next(keys=[self.queue_name])
     if not response:
       return
 
-    queue_name, serialized_job = response
-    job = Job.from_serialized(serialized_job)
+    job = Job.from_serialized(response)
     if not job:
       self.log.warn("could not deserialize job from: %s", serialized_job)
     return job
+
+  def finish(self, job_id):
+    """Notify the queue that a worker has completed work on a job_id. This
+    removes the record from the queue as well as the holding area
+    """
+    pass
+
 
   def __iter__(self):
     """Generator interface that will block on a queue and return items as they

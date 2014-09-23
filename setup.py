@@ -1,4 +1,4 @@
-from distutils.core import setup, Command
+from setuptools import setup, Command
 
 class PyTest(Command):
   user_options = []
@@ -18,7 +18,11 @@ setup(
     author_email="treystout@gmail.com",
     url="https://github.com/treystout/agner",
     version="0.2.1",
+    include_package_data=True,
     packages=['agner'],
+    package_data={
+      '': ['lua/*.lua']
+    },
     cmdclass={'test':PyTest},
 )
 
