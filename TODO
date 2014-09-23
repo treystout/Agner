@@ -1,0 +1,8 @@
+store jobs in redis on a single hash key
+
+producer inserts at LEFT
+consumer pops from RIGHT
+
+AGNER|PENDING|<queue_name> => LIST [job_id2, job_id1]
+AGNER|WORKING|<queue_name> => LIST[job_id3]
+AGNER|FAILED|<queue_name> => LIST[job_id3]
