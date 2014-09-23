@@ -1,8 +1,5 @@
 from uuid import uuid4
-try:
-  import cPickle as pickle
-except ImportError:
-  import Pickle as pickle
+import json
 
 class Job(object):
   def __init__(self, **kwargs):
@@ -12,7 +9,7 @@ class Job(object):
     if self.payload.get('job_id'):
       self.job_id = self.payload['job_id']
     else:
-      self.job_id = uuid4()
+      self.job_id = str(uuid4())
       self.payload['job_id'] = self.job_id
     self.__queue_name = None # set when enqueued
 
@@ -27,7 +24,7 @@ class Job(object):
 
   @classmethod
   def from_serialized(self, serialized):
-    payload = pickle.loads(serialized)
+    payload = json.loads(serialized)
     return Job(**payload)
 
   def notify_queued(self, queue):
@@ -39,4 +36,4 @@ class Job(object):
   def serialize(self):
     """Returns a suitable string representation of a job
     """
-    return pickle.dumps(self.payload)
+    return json.dumps(self.payload)
