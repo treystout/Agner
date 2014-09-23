@@ -8,6 +8,7 @@ TEST_QUEUE_NAME = "test_queue"
 @pytest.fixture(scope="module")
 def redis(request):
   redis = Redis()
+  redis.flushdb()
   def finalizer():
     redis.delete(TEST_QUEUE_NAME)
   request.addfinalizer(finalizer)
